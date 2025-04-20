@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Para Maria Clara</title>
+    <style>
+        body {
+            background-image: url('fundo-romantico.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            color: #fff;
+            padding: 40px;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            color: #ff69b4;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        p {
+            font-size: 1.5em;
+            max-width: 700px;
+            margin: auto;
+            line-height: 1.6;
+        }
+
+        #timer {
+            font-size: 2em;
+            color: #ff6347;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        button {
+            margin-top: 30px;
+            font-size: 18px;
+            padding: 12px 24px;
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ff4500;
+        }
+
+        video {
+            margin-top: 30px;
+            width: 80%;
+            max-width: 700px;
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.4);
+        }
+    </style>
+</head>
+<body>
+    <h1>Para Maria Clara 💖</h1>
+    <p id="message">
+        De Gustavo, para Maria Clara, meu presente foi feito especialmente para você, meu amor, em comemoração a todos esses meses juntos. Cada segundo ao seu lado é uma alegria imensa. 💕
+    </p>
+
+    <!-- Seção de vídeo -->
+    <video controls autoplay loop muted>
+        <source src="video.mp4" type="video/mp4">
+        Seu navegador não suporta vídeo.
+    </video>
+
+    <p>Tempo juntos:</p>
+    <div id="timer">
+        Carregando tempo...
+    </div>
+
+    <!-- Música -->
+    <audio id="bgmusic" autoplay loop>
+        <source src="musica.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio.
+    </audio>
+
+    <!-- Botão de play/pause -->
+    <button onclick="toggleMusic()">🔈 Ligar/Desligar música</button>
+
+    <script>
+        const startDate = new Date('2024-12-29T00:00:00');
+        const music = document.getElementById("bgmusic");
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30.44));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('timer').innerHTML = `${months} meses, ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos`;
+        }
+
+        setInterval(updateTimer, 1000);
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        }
+
+        updateTimer();
+    </script>
+</body>
+</html>
